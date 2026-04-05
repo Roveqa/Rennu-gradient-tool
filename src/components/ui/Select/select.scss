@@ -1,0 +1,181 @@
+@use '../../../styles/tokens' as t;
+
+.ashen-select {
+  position: relative;
+}
+
+/* ================== TRIGGER ================== */
+
+.ashen-select__trigger {
+  appearance: none;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  border-radius: t.$radius;
+  padding: 8px 12px;
+
+  background: t.$surface-subtle;
+  color: t.$foreground-subtle;
+
+  cursor: pointer;
+  user-select: none;
+
+  border: 1px solid transparent;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+
+  font-family: 'Geist', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.ashen-select__trigger:hover {
+  background: t.$surface-muted;
+  color: t.$foreground-subtle;
+}
+
+.ashen-select__trigger.is-open {
+  background: t.$surface-muted;
+  color: t.$foreground-subtle;
+}
+
+.ashen-select__triggerDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+/* ❗ фикс выравнивания текста */
+.ashen-select__triggerLabel {
+  flex: 0 1 auto;
+  min-width: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ❗ для no-dot версии - текст занимает больше места слева */
+.ashen-select__trigger.no-dot .ashen-select__triggerLabel {
+  flex: 1;
+  text-align: left;
+}
+
+/* ❗ стрелка всегда справа */
+.ashen-select__arrow {
+  margin-left: auto;
+
+  width: 12px;
+  height: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: currentColor;
+  opacity: 0.8;
+}
+
+/* ================== MENU ================== */
+
+.ashen-select__menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 2px 0;
+
+  background: t.$surface;
+  border: 1px solid t.$stroke-subtle;
+  border-radius: t.$radius;
+
+  z-index: 250;
+
+  /* ❗ ограничение до 4 айтемов */
+  max-height: 128px;
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+}
+
+.ashen-select__menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ashen-select__menu::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+/* ================== ITEM ================== */
+
+.ashen-select__item {
+  padding: 2px 4px;
+}
+
+/* эффекты ТОЛЬКО на inner */
+.ashen-select__itemInner {
+  border-radius: 4px;
+  padding: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: transparent;
+  color: t.$foreground-subtle;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.ashen-select__itemInner:hover {
+  background: t.$surface-muted;
+}
+
+.ashen-select__itemInner.is-active {
+  background: t.$surface-inverse;
+  color: t.$foreground-inverse;
+}
+
+.ashen-select__itemInner.is-active:hover {
+  background: t.$surface-inverse-subtle;
+  color: t.$foreground-inverse;
+}
+
+.ashen-select__itemDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.ashen-select__itemLabel {
+  font-size: 12px;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-weight: 400;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================== FOCUS ================== */
+
+.ashen-select__trigger:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.18);
+  outline-offset: 2px;
+}

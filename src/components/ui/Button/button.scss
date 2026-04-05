@@ -1,0 +1,83 @@
+@use '../../../styles/tokens' as t;
+
+.ashen-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: t.$radius;
+  padding: 8px 6px;
+  height: auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Geist', sans-serif;
+  font-size: 12px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  line-height: 1.2;
+
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+  color: t.$foreground;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.ashen-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ashen-btn--primary {
+  background: t.$primary;
+  border-color: t.$primary;
+  color: t.$foreground-inverse;
+}
+
+.ashen-btn--primary:hover {
+  background: t.$primary-hover;
+  border-color: t.$primary-hover;
+}
+
+.ashen-btn--primary:active {
+  background: t.$primary;
+  border-color: t.$primary;
+}
+
+.ashen-btn--secondary {
+  background: t.$secondary;
+  border-color: t.$secondary;
+  color: t.$foreground;
+}
+
+.ashen-btn--secondary:hover {
+  background: t.$secondary-hover;
+  border-color: t.$secondary-hover;
+}
+
+.ashen-btn--secondary:active {
+  background: t.$secondary;
+  border-color: t.$secondary;
+}
+
+.ashen-btn--outline {
+  background: transparent;
+  border-color: t.$stroke-subtle;
+  color: t.$foreground;
+}
+
+.ashen-btn--outline:hover {
+  background: t.$surface-10;
+  border-color: t.$stroke-subtle;
+}
+
+.ashen-btn--outline:active {
+  background: transparent;
+  border-color: t.$stroke-subtle;
+}
+
+.ashen-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.18);
+  outline-offset: 2px;
+}

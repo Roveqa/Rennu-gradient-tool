@@ -1,0 +1,8 @@
+@use '../../../styles/tokens' as t;
+
+.ashen-divider {
+  height: 1px;
+  width: 100%;
+  background: t.$stroke-subtle;
+}
+

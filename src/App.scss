@@ -1,0 +1,382 @@
+@use './styles/tokens' as t;
+
+.sidebar__logo {
+  padding: 20px;
+}
+
+.sidebar__logo img {
+  height: 16px;
+  width: auto;
+  display: block;
+}
+
+.sidebar__logoDivider {
+  margin: 0;
+}
+
+.sidebar__dividerWrap + .sidebar__dividerWrap {
+  margin-top: 18px;
+}
+
+.sidebar__section {
+  padding: 18px 20px;
+}
+
+.sidebar__sectionLabel {
+  font-size: 12px;
+  letter-spacing: -0.03em;
+  color: t.$foreground-subtle;
+  margin-bottom: 12px;
+}
+
+.sidebar__sectionLabelTight {
+  margin-bottom: 12px;
+}
+
+.sidebar__stops {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stop-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  transition: opacity 0.15s ease;
+  position: relative;
+}
+
+.stop-row.dragging {
+  opacity: 0.35;
+}
+
+.stop-row.drag-over {
+  &.drag-over-before {
+    border-top: 2px solid rgba(255, 255, 255, 0.32);
+    padding-top: calc(4px - 2px);
+  }
+  
+  &.drag-over-after {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.32);
+    padding-bottom: calc(4px - 2px);
+  }
+}
+
+.stop-row__handle {
+  cursor: grab;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  line-height: 1;
+  user-select: none;
+  flex-shrink: 0;
+  padding: 0 2px;
+  transition: color 0.15s ease;
+}
+
+.stop-row:hover .stop-row__handle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.stop-row.dragging .stop-row__handle {
+  cursor: grabbing;
+  color: t.$foreground-inverse;
+}
+
+.stop-row__sw {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.stop-row__sw.is-dark {
+  outline: 1px solid rgba(255, 255, 255, 0.12);
+  outline-offset: -1px;
+}
+
+.stop-row__sw input[type='color'] {
+  position: absolute;
+  inset: -4px;
+  opacity: 0;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+.stop-row__hex {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.04em;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Geist Mono', 'Monaco', 'Menlo', monospace;
+  font-weight: 500;
+}
+
+.stop-row__del {
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.stop-row__del:hover {
+  color: t.$foreground-inverse;
+}
+
+.sidebar__stopControls {
+  display: flex;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.sidebar__stopBtn {
+  flex: 1;
+}
+
+.sidebar__divider {
+  margin: 0;
+}
+
+.sidebar__settings {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.sidebar__block {
+  padding: 18px 20px;
+}
+
+.sidebar__effects {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar__dividerGap {
+  padding: 0 20px;
+}
+
+/* ================== GRID 6 COL ================== */
+
+.sidebar__dirGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+/* первые 6 элементов (2 ряда) → по 2 колонки */
+.sidebar__dirGrid > *:nth-child(-n + 6) {
+  grid-column: span 2;
+}
+
+/* последние 2 → по 3 колонки */
+.sidebar__dirGrid > *:nth-child(n + 7) {
+  grid-column: span 3;
+}
+
+/* ================== FOOTER ================== */
+
+.sidebar__footer {
+  padding: 14px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+  border-top: 1px solid t.$stroke-subtle;
+  margin-top: auto;
+  background: t.$surface;
+}
+
+.sidebar__footerRow {
+  display: flex;
+  gap: 4px;
+}
+
+.sidebar__footerRow .ashen-btn {
+  flex: 1;
+}
+
+.sidebar__footerDivider {
+  display: none;
+}
+
+/* ================== EXPORT MODAL ================== */
+
+.exportModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(2px);
+}
+
+.exportModalOverlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.exportModal {
+  position: relative;
+  z-index: 1001;
+  background: t.$surface;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
+  width: 540px;
+  max-width: 90vw;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.exportModal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  margin-bottom: 24px;
+  padding-top: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: t.$foreground;
+}
+
+.exportModal__x {
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  color: t.$foreground-muted;
+  font-size: 16px;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.exportModal__x:hover {
+  color: t.$foreground;
+}
+
+.exportModal__content {
+  padding: 0 28px;
+  margin-bottom: 20px;
+}
+
+.exportModal__columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.exportModal__column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exportModal__label {
+  font-size: 12px;
+  letter-spacing: -0.03em;
+  color: t.$foreground-subtle;
+  font-weight: 400;
+}
+
+.exportModal__divider {
+  height: 1px;
+  background: t.$stroke-subtle;
+  margin-bottom: 20px;
+}
+
+.exportModal__actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 28px 24px;
+}
+
+.exportModal__actions .ashen-btn {
+  flex: 1;
+}
+
+/* ================== MOBILE ================== */
+
+.mob-toggle {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 300;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: t.$foreground-inverse;
+  color: t.$surface-inverse;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.mob-toggle svg {
+  stroke: t.$surface-inverse;
+}
+
+@media (max-width: 640px) {
+  .mob-toggle {
+    display: flex;
+  }
+
+  .sidebar__logo {
+    display: none;
+  }
+
+  .exportModal {
+    width: 100%;
+  }
+
+  .exportModal__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .exportModal__actions {
+    flex-direction: column;
+  }
+}

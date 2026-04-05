@@ -1,0 +1,124 @@
+@use './tokens' as t;
+
+@import url('https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans.css');
+@import url('https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-mono.css');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: t.$surface;
+  color: t.$foreground-muted;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Geist Mono for code/technical elements */
+code,
+pre,
+.monospace,
+.code {
+  font-family: 'Geist Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-feature-settings: 'zero' 1;
+}
+
+// App layout
+.ashen-app {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+}
+
+.ashen-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 240px;
+  min-width: 240px;
+  background: t.$surface;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.ashen-canvas-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  background: t.$surface;
+}
+
+.ashen-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+// Mobile behavior
+@media (max-width: 640px) {
+  .ashen-app {
+    grid-template-columns: 1fr;
+  }
+
+  .ashen-sidebar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    height: auto;
+    max-height: 72vh;
+    border-right: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 16px 16px 28px;
+    z-index: 200;
+    transform: translateY(100%);
+    transition: transform 0.28s ease;
+    overflow-y: auto;
+  }
+
+  .ashen-sidebar.open {
+    transform: translateY(0);
+  }
+
+  .ashen-canvas-wrap {
+    height: 100vh;
+  }
+}
+
+// Utility / base typography
+.ashen-label {
+  font-size: 12px;
+  letter-spacing: -0.03em;
+  color: t.$foreground-subtle;
+}
+
+.ashen-font-regular {
+  font-weight: 400;
+}
+
+/* Отключаем все интерактивные элементы во время drag */
+body.dragging {
+  pointer-events: none;
+}
+
+body.dragging [draggable="true"] {
+  pointer-events: auto;
+}

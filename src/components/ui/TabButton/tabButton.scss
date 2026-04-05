@@ -1,0 +1,72 @@
+@use '../../../styles/tokens' as t;
+
+.ashen-tabButton {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: t.$radius;
+  padding: 6px 4px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  background: t.$surface-subtle;
+  color: t.$foreground-muted;
+
+  cursor: pointer;
+  user-select: none;
+
+  font-size: 10px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  line-height: 1.1;
+
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.ashen-tabButton__text {
+  display: block;
+  font-size: 10px;
+  line-height: 1;
+  text-align: center;
+}
+
+/* states */
+
+.ashen-tabButton:hover {
+  background: t.$surface-muted;
+  color: t.$foreground-muted;
+}
+
+.ashen-tabButton--active {
+  background: t.$surface-inverse;
+  color: t.$foreground-inverse;
+}
+
+.ashen-tabButton--active:hover {
+  background: t.$surface-inverse-subtle;
+  color: t.$foreground-inverse;
+}
+
+.ashen-tabButton:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.18);
+  outline-offset: 2px;
+}
+
+/* Отключаем hover эффекты во время drag */
+body.dragging .ashen-tabButton:hover {
+  background: t.$surface-subtle !important;
+  color: t.$foreground-muted !important;
+}
+
+body.dragging .ashen-tabButton--active:hover {
+  background: t.$surface-inverse !important;
+  color: t.$foreground-inverse !important;
+}
+
+/* Дополнительно отключаем pointer events для более надежного результата */
+body.dragging .ashen-tabButton {
+  pointer-events: none !important;
+}

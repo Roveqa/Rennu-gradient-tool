@@ -1,0 +1,75 @@
+@use '../../../styles/tokens' as t;
+
+.ashen-slider {
+  position: relative;
+  height: 32px;
+  border-radius: t.$radius;
+  background: t.$surface-subtle;
+  overflow: hidden;
+  cursor: pointer;
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ================== FILLED ================== */
+
+.ashen-slider__fill {
+  position: absolute;
+  inset: 0;
+  width: var(--percent);
+
+  background: t.$surface-muted;
+  border-radius: 8px;
+
+  pointer-events: none;
+}
+
+/* ================== HANDLE ================== */
+
+.ashen-slider__handle {
+  position: absolute;
+
+  top: 6px;
+  bottom: 6px;
+
+  left: var(--percent);
+  transform: translateX(-8px);
+
+  width: 3px;
+  border-radius: 2px;
+
+  background: t.$foreground-52;
+  opacity: 0.5;
+
+  pointer-events: none;
+}
+
+/* ================== UI ================== */
+
+.ashen-slider__ui {
+  position: relative;
+  z-index: 1;
+
+  height: 100%;
+  padding: 0 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+.ashen-slider__label {
+  font-size: 12px;
+  letter-spacing: -0.03em;
+  color: t.$foreground-52;
+}
+
+.ashen-slider__value {
+  font-size: 12px;
+  letter-spacing: -0.03em;
+  color: t.$foreground-muted;
+}

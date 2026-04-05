@@ -1,0 +1,25 @@
+$radius: 8px;
+
+// Semantic tokens (extracted from Semantic.json / Primitive.json)
+$surface: #000000; // Background/Solid/surface
+$surface-muted: #333333; // Background/Solid/surface-muted
+$surface-subtle: #1f1f1f; // Background/Solid/surface-subtle
+$surface-inverse: #ffffff; // Background/Solid/surface-inverse
+$surface-inverse-subtle: #f8f8f8; // Background/Solid/surface-inverse-subtle
+$surface-10: rgba(255, 255, 255, 0.1); // Background/Alfa/surface-10
+
+$primary: #ffffff; // Primary/primary
+$primary-hover: #f8f8f8; // Primary/primary-hover
+
+$secondary: #333333; // Secondary/secondary
+$secondary-hover: #3a3a3a; // Secondary/secondary-hover
+
+$foreground: #ffffff; // Foreground/Solid/foreground
+$foreground-subtle: #919191; // Foreground/Solid/foreground-subtle
+$foreground-muted: #c9c9C9; // Foreground/Solid/foreground-muted
+$foreground-inverse: #000000; // Foreground/Solid/foreground-inverse
+$foreground-52: rgba(255, 255, 255, 0.52); // Foreground/Alfa/foreground-52
+
+$stroke: #333333; // Stroke/stroke
+$stroke-subtle: #1f1f1f; // Stroke/stroke-subtle
+
