@@ -18,9 +18,9 @@ export const Button = memo(function Button({
       {...props}
       disabled={disabled}
       className={[
-        'ashen-btn',
-        `ashen-btn--${variant}`,
-        disabled ? 'ashen-btn--disabled' : '',
+        'rennu-btn',
+        `rennu-btn--${variant}`,
+        disabled ? 'rennu-btn--disabled' : '',
         className ?? '',
       ].join(' ')}
     />

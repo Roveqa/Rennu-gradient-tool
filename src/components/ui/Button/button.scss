@@ -1,6 +1,6 @@
 @use '../../../styles/tokens' as t;
 
-.ashen-btn {
+.rennu-btn {
   appearance: none;
   border: 1px solid transparent;
   border-radius: t.$radius;
@@ -24,60 +24,60 @@
   transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
-.ashen-btn--disabled {
+.rennu-btn--disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.ashen-btn--primary {
+.rennu-btn--primary {
   background: t.$primary;
   border-color: t.$primary;
   color: t.$foreground-inverse;
 }
 
-.ashen-btn--primary:hover {
+.rennu-btn--primary:hover {
   background: t.$primary-hover;
   border-color: t.$primary-hover;
 }
 
-.ashen-btn--primary:active {
+.rennu-btn--primary:active {
   background: t.$primary;
   border-color: t.$primary;
 }
 
-.ashen-btn--secondary {
+.rennu-btn--secondary {
   background: t.$secondary;
   border-color: t.$secondary;
   color: t.$foreground;
 }
 
-.ashen-btn--secondary:hover {
+.rennu-btn--secondary:hover {
   background: t.$secondary-hover;
   border-color: t.$secondary-hover;
 }
 
-.ashen-btn--secondary:active {
+.rennu-btn--secondary:active {
   background: t.$secondary;
   border-color: t.$secondary;
 }
 
-.ashen-btn--outline {
+.rennu-btn--outline {
   background: transparent;
   border-color: t.$stroke-subtle;
   color: t.$foreground;
 }
 
-.ashen-btn--outline:hover {
+.rennu-btn--outline:hover {
   background: t.$surface-10;
   border-color: t.$stroke-subtle;
 }
 
-.ashen-btn--outline:active {
+.rennu-btn--outline:active {
   background: transparent;
   border-color: t.$stroke-subtle;
 }
 
-.ashen-btn:focus-visible {
+.rennu-btn:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.18);
   outline-offset: 2px;
 }

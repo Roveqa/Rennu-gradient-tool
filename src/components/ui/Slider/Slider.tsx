@@ -76,7 +76,7 @@ export const Slider = memo(function Slider({
   return (
     <div
       ref={ref}
-      className="ashen-slider"
+      className="rennu-slider"
       onPointerDown={onPointerDown}
       style={
         {
@@ -84,12 +84,12 @@ export const Slider = memo(function Slider({
         } as React.CSSProperties
       }
     >
-      <div className="ashen-slider__fill" />
-      <div className="ashen-slider__handle" />
+      <div className="rennu-slider__fill" />
+      <div className="rennu-slider__handle" />
 
-      <div className="ashen-slider__ui">
-        <span className="ashen-slider__label">{label}</span>
-        <span className="ashen-slider__value">({value})</span>
+      <div className="rennu-slider__ui">
+        <span className="rennu-slider__label">{label}</span>
+        <span className="rennu-slider__value">({value})</span>
       </div>
     </div>
   );

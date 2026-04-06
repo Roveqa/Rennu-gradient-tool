@@ -3,6 +3,10 @@
 @import url('https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans.css');
 @import url('https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-mono.css');
 
+:root {
+  --mobile-header-height: 66px;
+}
+
 *,
 *::before,
 *::after {
@@ -38,13 +42,18 @@ pre,
 }
 
 // App layout
-.ashen-app {
+.rennu-app {
   height: 100vh;
   display: grid;
   grid-template-columns: 240px 1fr;
 }
 
-.ashen-sidebar {
+.mobileHeader,
+.mobileBackdrop {
+  display: none;
+}
+
+.rennu-sidebar {
   position: sticky;
   top: 0;
   height: 100vh;
@@ -58,14 +67,14 @@ pre,
   flex-direction: column;
 }
 
-.ashen-canvas-wrap {
+.rennu-canvas-wrap {
   position: relative;
   overflow: hidden;
   height: 100vh;
   background: t.$surface;
 }
 
-.ashen-canvas {
+.rennu-canvas {
   display: block;
   width: 100%;
   height: 100%;
@@ -73,44 +82,94 @@ pre,
 
 // Mobile behavior
 @media (max-width: 640px) {
-  .ashen-app {
+  .rennu-app {
     grid-template-columns: 1fr;
   }
 
-  .ashen-sidebar {
+  .mobileHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: fixed;
+    top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    top: auto;
-    height: auto;
-    max-height: 72vh;
+    z-index: 320;
+    padding: 24px 20px;
+    background: t.$surface;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobileHeader__brand {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobileHeader__brand img {
+    height: 20px;
+    width: auto;
+    display: block;
+  }
+
+  .mobileBackdrop {
+    display: block;
+    position: fixed;
+    inset: var(--mobile-header-height) 0 0;
+    z-index: 210;
+    border: 0;
+    background: rgba(0, 0, 0, 0.52);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.24s ease;
+  }
+
+  .mobileBackdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .rennu-sidebar {
+    position: fixed;
+    top: var(--mobile-header-height);
+    left: 0;
+    right: 0;
+    height: calc(100dvh - var(--mobile-header-height));
+    width: 100%;
+    min-width: 0;
     border-right: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 16px 16px 28px;
-    z-index: 200;
-    transform: translateY(100%);
-    transition: transform 0.28s ease;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 260;
+    transform: translateY(-16px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 0.24s ease,
+      opacity 0.24s ease;
     overflow-y: auto;
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
   }
 
-  .ashen-sidebar.open {
+  .rennu-sidebar.open {
     transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
-  .ashen-canvas-wrap {
-    height: 100vh;
+  .rennu-canvas-wrap {
+    height: 100dvh;
+    padding-top: var(--mobile-header-height);
   }
 }
 
 // Utility / base typography
-.ashen-label {
+.rennu-label {
   font-size: 12px;
   letter-spacing: -0.03em;
   color: t.$foreground-subtle;
 }
 
-.ashen-font-regular {
+.rennu-font-regular {
   font-weight: 400;
 }
 

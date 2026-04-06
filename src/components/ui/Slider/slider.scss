@@ -1,6 +1,6 @@
 @use '../../../styles/tokens' as t;
 
-.ashen-slider {
+.rennu-slider {
   position: relative;
   height: 32px;
   border-radius: t.$radius;
@@ -14,7 +14,7 @@
 
 /* ================== FILLED ================== */
 
-.ashen-slider__fill {
+.rennu-slider__fill {
   position: absolute;
   inset: 0;
   width: var(--percent);
@@ -27,7 +27,7 @@
 
 /* ================== HANDLE ================== */
 
-.ashen-slider__handle {
+.rennu-slider__handle {
   position: absolute;
 
   top: 6px;
@@ -47,7 +47,7 @@
 
 /* ================== UI ================== */
 
-.ashen-slider__ui {
+.rennu-slider__ui {
   position: relative;
   z-index: 1;
 
@@ -62,13 +62,13 @@
   user-select: none;
 }
 
-.ashen-slider__label {
+.rennu-slider__label {
   font-size: 12px;
   letter-spacing: -0.03em;
   color: t.$foreground-52;
 }
 
-.ashen-slider__value {
+.rennu-slider__value {
   font-size: 12px;
   letter-spacing: -0.03em;
   color: t.$foreground-muted;

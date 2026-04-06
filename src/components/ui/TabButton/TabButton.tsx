@@ -18,13 +18,13 @@ export const TabButton = memo(function TabButton({
     <button
       type="button"
       className={[
-        'ashen-tabButton',
-        active ? 'ashen-tabButton--active' : '',
+        'rennu-tabButton',
+        active ? 'rennu-tabButton--active' : '',
       ].join(' ')}
       onClick={onClick}
     >
       {icon}
-      <span className="ashen-tabButton__text">{children}</span>
+      <span className="rennu-tabButton__text">{children}</span>
     </button>
   );
 });

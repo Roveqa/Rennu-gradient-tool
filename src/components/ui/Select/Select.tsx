@@ -44,38 +44,38 @@ export function Select({
   }, []);
 
   return (
-    <div className="ashen-select" ref={wrapRef}>
+    <div className="rennu-select" ref={wrapRef}>
       <button
         type="button"
-        className={`ashen-select__trigger ${open ? 'is-open' : ''} ${hideDot ? 'no-dot' : ''}`}
+        className={`rennu-select__trigger ${open ? 'is-open' : ''} ${hideDot ? 'no-dot' : ''}`}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
         {!hideDot && (
           <span
-            className="ashen-select__triggerDot"
+            className="rennu-select__triggerDot"
             style={{ background: triggerDotBg ?? activeItem?.dotBg }}
           />
         )}
 
-        <span className="ashen-select__triggerLabel">
+        <span className="rennu-select__triggerLabel">
           {triggerLabel ?? activeItem?.label ?? ''}
         </span>
 
-        <span className="ashen-select__arrow" aria-hidden="true">
+        <span className="rennu-select__arrow" aria-hidden="true">
           <ChevronsUpDown size={12} />
         </span>
       </button>
 
       {open && (
-        <div className="ashen-select__menu" role="listbox">
+        <div className="rennu-select__menu" role="listbox">
           {items.map((item) => {
             const isActive = item.value === activeValue;
 
             return (
               <div
                 key={item.value}
-                className="ashen-select__item"
+                className="rennu-select__item"
                 role="option"
                 aria-selected={isActive}
                 onClick={() => {
@@ -84,18 +84,18 @@ export function Select({
                 }}
               >
                 <div
-                  className={`ashen-select__itemInner ${
+                  className={`rennu-select__itemInner ${
                     isActive ? 'is-active' : ''
                   }`}
                 >
                   {item.dotBg && (
                     <span
-                      className="ashen-select__itemDot"
+                      className="rennu-select__itemDot"
                       style={{ background: item.dotBg }}
                     />
                   )}
 
-                  <span className="ashen-select__itemLabel">
+                  <span className="rennu-select__itemLabel">
                     {item.label}
                   </span>
                 </div>

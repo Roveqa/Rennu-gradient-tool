@@ -1,12 +1,12 @@
 @use '../../../styles/tokens' as t;
 
-.ashen-select {
+.rennu-select {
   position: relative;
 }
 
 /* ================== TRIGGER ================== */
 
-.ashen-select__trigger {
+.rennu-select__trigger {
   appearance: none;
   width: 100%;
 
@@ -34,17 +34,17 @@
   line-height: 1.2;
 }
 
-.ashen-select__trigger:hover {
+.rennu-select__trigger:hover {
   background: t.$surface-muted;
   color: t.$foreground-subtle;
 }
 
-.ashen-select__trigger.is-open {
+.rennu-select__trigger.is-open {
   background: t.$surface-muted;
   color: t.$foreground-subtle;
 }
 
-.ashen-select__triggerDot {
+.rennu-select__triggerDot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -52,7 +52,7 @@
 }
 
 /* ❗ фикс выравнивания текста */
-.ashen-select__triggerLabel {
+.rennu-select__triggerLabel {
   flex: 0 1 auto;
   min-width: 0;
 
@@ -62,13 +62,13 @@
 }
 
 /* ❗ для no-dot версии - текст занимает больше места слева */
-.ashen-select__trigger.no-dot .ashen-select__triggerLabel {
+.rennu-select__trigger.no-dot .rennu-select__triggerLabel {
   flex: 1;
   text-align: left;
 }
 
 /* ❗ стрелка всегда справа */
-.ashen-select__arrow {
+.rennu-select__arrow {
   margin-left: auto;
 
   width: 12px;
@@ -84,7 +84,7 @@
 
 /* ================== MENU ================== */
 
-.ashen-select__menu {
+.rennu-select__menu {
   position: absolute;
   left: 0;
   right: 0;
@@ -108,23 +108,23 @@
   scrollbar-width: thin;
 }
 
-.ashen-select__menu::-webkit-scrollbar {
+.rennu-select__menu::-webkit-scrollbar {
   width: 6px;
 }
 
-.ashen-select__menu::-webkit-scrollbar-thumb {
+.rennu-select__menu::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.12);
   border-radius: 999px;
 }
 
 /* ================== ITEM ================== */
 
-.ashen-select__item {
+.rennu-select__item {
   padding: 2px 4px;
 }
 
 /* эффекты ТОЛЬКО на inner */
-.ashen-select__itemInner {
+.rennu-select__itemInner {
   border-radius: 4px;
   padding: 8px;
 
@@ -141,28 +141,28 @@
   transition: background 120ms ease, color 120ms ease;
 }
 
-.ashen-select__itemInner:hover {
+.rennu-select__itemInner:hover {
   background: t.$surface-muted;
 }
 
-.ashen-select__itemInner.is-active {
+.rennu-select__itemInner.is-active {
   background: t.$surface-inverse;
   color: t.$foreground-inverse;
 }
 
-.ashen-select__itemInner.is-active:hover {
+.rennu-select__itemInner.is-active:hover {
   background: t.$surface-inverse-subtle;
   color: t.$foreground-inverse;
 }
 
-.ashen-select__itemDot {
+.rennu-select__itemDot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   flex: 0 0 auto;
 }
 
-.ashen-select__itemLabel {
+.rennu-select__itemLabel {
   font-size: 12px;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -175,7 +175,7 @@
 
 /* ================== FOCUS ================== */
 
-.ashen-select__trigger:focus-visible {
+.rennu-select__trigger:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.18);
   outline-offset: 2px;
 }

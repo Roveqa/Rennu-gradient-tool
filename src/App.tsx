@@ -301,7 +301,7 @@ const DIRECTIONS: { id: Orient; label: string; icon: React.ReactNode }[] = [
   { id: 'rc', label: 'Off-ctr', icon: <CircleOff size={12} /> },
 ];
 
-const LOGO_SRC = '/logo/ashen-logo.svg';
+const LOGO_SRC = '/logo/rennu-logo.svg';
 
 function rndJP() {
   return JP[Math.floor(Math.random() * JP.length)];
@@ -606,7 +606,7 @@ export default function App() {
 
     const mime = expFmt === 'jpg' ? 'image/jpeg' : 'image/png';
     const a = document.createElement('a');
-    a.download = `ashen-gradient.${expFmt}`;
+    a.download = `rennu-gradient.${expFmt}`;
     a.href = oc.toDataURL(mime, 0.95);
     a.click();
 
@@ -785,13 +785,36 @@ export default function App() {
   const [dropPosition, setDropPosition] = useState<'before' | 'after' | null>(null);
 
   return (
-    <div className="ashen-app">
+    <div className="rennu-app">
+      <header className="mobileHeader">
+        <div className="mobileHeader__brand">
+          <img src={LOGO_SRC} alt="Rennu" />
+        </div>
+        <button
+          type="button"
+          className={['mobileMenuButton', sidebarOpen ? 'is-open' : ''].join(' ')}
+          aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={sidebarOpen}
+          onClick={() => setSidebarOpen((v) => !v)}
+        >
+          <span />
+          <span />
+        </button>
+      </header>
+
+      <button
+        type="button"
+        className={['mobileBackdrop', sidebarOpen ? 'is-open' : ''].join(' ')}
+        aria-label="Close menu"
+        onClick={() => setSidebarOpen(false)}
+      />
+
       <aside
-        className={['ashen-sidebar', sidebarOpen ? 'open' : ''].join(' ')}
+        className={['rennu-sidebar', sidebarOpen ? 'open' : ''].join(' ')}
         aria-label="Sidebar"
       >
         <div className="sidebar__logo">
-          <img src={LOGO_SRC} alt="Ashen" />
+          <img src={LOGO_SRC} alt="Rennu" />
         </div>
         <div className="sidebar__dividerWrap sidebar__logoDivider">
           <Divider />
@@ -1020,8 +1043,8 @@ export default function App() {
         </div>
       </aside>
 
-      <div className="ashen-canvas-wrap" ref={canvasWrapRef}>
-        <canvas ref={canvasRef} className="ashen-canvas" />
+      <div className="rennu-canvas-wrap" ref={canvasWrapRef}>
+        <canvas ref={canvasRef} className="rennu-canvas" />
       </div>
 
       {exportOpen && (
@@ -1120,26 +1143,6 @@ export default function App() {
         </div>
       )}
 
-      <button
-        type="button"
-        className="mob-toggle"
-        aria-label="Toggle sidebar"
-        onClick={() => setSidebarOpen((v) => !v)}
-      >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        >
-          <line x1="3" y1="5" x2="15" y2="5" />
-          <line x1="3" y1="9" x2="15" y2="9" />
-          <line x1="3" y1="13" x2="15" y2="13" />
-        </svg>
-      </button>
     </div>
   );
 }

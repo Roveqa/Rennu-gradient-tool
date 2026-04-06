@@ -209,12 +209,53 @@
   gap: 4px;
 }
 
-.sidebar__footerRow .ashen-btn {
+.sidebar__footerRow .rennu-btn {
   flex: 1;
 }
 
 .sidebar__footerDivider {
   display: none;
+}
+
+.mobileMenuButton {
+  position: relative;
+  width: 40px;
+  height: 13px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: t.$foreground;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mobileMenuButton span {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: center;
+  transition:
+    transform 0.24s ease,
+    opacity 0.24s ease;
+}
+
+.mobileMenuButton span:first-child {
+  top: 0;
+}
+
+.mobileMenuButton span:last-child {
+  top: 12px;
+}
+
+.mobileMenuButton.is-open span:first-child {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.mobileMenuButton.is-open span:last-child {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ================== EXPORT MODAL ================== */
@@ -332,51 +373,82 @@
   padding: 0 28px 24px;
 }
 
-.exportModal__actions .ashen-btn {
+.exportModal__actions .rennu-btn {
   flex: 1;
 }
 
 /* ================== MOBILE ================== */
 
-.mob-toggle {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 300;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: t.$foreground-inverse;
-  color: t.$surface-inverse;
-  border: none;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-}
-
-.mob-toggle svg {
-  stroke: t.$surface-inverse;
-}
-
 @media (max-width: 640px) {
-  .mob-toggle {
-    display: flex;
-  }
-
   .sidebar__logo {
     display: none;
   }
 
+  .sidebar__dividerWrap.sidebar__logoDivider {
+    display: none;
+  }
+
+  .sidebar__settings {
+    padding-top: 8px;
+  }
+
+  .sidebar__section,
+  .sidebar__block {
+    padding: 18px 20px;
+  }
+
+  .sidebar__dividerWrap {
+    padding: 0 20px;
+  }
+
+  .sidebar__dirGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .sidebar__dirGrid > *:nth-child(-n + 6),
+  .sidebar__dirGrid > *:nth-child(n + 7) {
+    grid-column: span 2;
+  }
+
+  .sidebar__stopControls,
+  .sidebar__footerRow {
+    gap: 8px;
+  }
+
+  .sidebar__footer {
+    padding: 16px 20px calc(24px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
   .exportModal {
-    width: 100%;
+    width: calc(100% - 24px);
+    max-width: none;
   }
 
   .exportModal__columns {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .exportModal__actions {
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .exportModal__header,
+  .exportModal__content,
+  .exportModal__actions {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .exportModal__header {
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .exportModal__divider {
+    margin-bottom: 16px;
   }
 }
