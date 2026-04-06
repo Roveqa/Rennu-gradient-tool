@@ -251,15 +251,11 @@
 }
 
 .mobileMenuButton.is-open span:first-child {
-  left: 10px;
-  width: 20px;
-  transform: translateY(6px) rotate(45deg);
+  transform: translateY(6px) rotate(20deg);
 }
 
 .mobileMenuButton.is-open span:last-child {
-  left: 10px;
-  width: 20px;
-  transform: translateY(-6px) rotate(-45deg);
+  transform: translateY(-6px) rotate(-20deg);
 }
 
 /* ================== EXPORT MODAL ================== */
