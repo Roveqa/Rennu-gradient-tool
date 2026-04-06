@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from './components/ui/Button/Button';
 import { Divider } from './components/ui/Divider/Divider';
 import { Select } from './components/ui/Select/Select';
@@ -461,13 +461,14 @@ export default function App() {
     return '#000';
   }
 
-  function draw() {
+  const draw = useCallback(() => {
     const canvas = canvasRef.current;
     const wrap = canvasWrapRef.current;
     if (!canvas || !wrap) return;
 
-    const W = wrap.clientWidth || 800;
-    const H = wrap.clientHeight || window.innerHeight;
+    const rect = wrap.getBoundingClientRect();
+    const W = Math.max(Math.round(rect.width || wrap.clientWidth || 800), 1);
+    const H = Math.max(Math.round(rect.height || wrap.clientHeight || window.innerHeight), 1);
 
     canvas.width = W * 2;
     canvas.height = H * 2;
@@ -506,7 +507,7 @@ export default function App() {
       ctx.drawImage(nc, 0, 0, W, H);
       ctx.globalCompositeOperation = 'source-over';
     }
-  }
+  }, [stops, noiseA, blurA, orient]);
 
   function renderExportTo(
     ctx: CanvasRenderingContext2D,
@@ -761,7 +762,27 @@ export default function App() {
     const onResize = () => draw();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, [stops, noiseA, blurA, orient]);
+  }, [draw]);
+
+  useEffect(() => {
+    const wrap = canvasWrapRef.current;
+    if (!wrap) return;
+
+    const rafId = window.requestAnimationFrame(() => {
+      draw();
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+      draw();
+    });
+
+    resizeObserver.observe(wrap);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      resizeObserver.disconnect();
+    };
+  }, [draw]);
 
   const presetItems = useMemo(() => {
     return Object.keys(PRESETS).map((name) => ({
