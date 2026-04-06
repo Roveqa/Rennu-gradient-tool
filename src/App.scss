@@ -424,6 +424,7 @@
   .exportModal {
     width: calc(100% - 24px);
     max-width: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .exportModal__columns {

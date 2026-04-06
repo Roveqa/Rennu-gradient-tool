@@ -19,6 +19,7 @@ export const Slider = memo(function Slider({
   onChange 
 }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const activePointerIdRef = useRef<number | null>(null);
   const [dragging, setDragging] = useState(false);
   const onChangeRef = useRef(onChange);
 
@@ -48,28 +49,58 @@ export const Slider = memo(function Slider({
     onChangeRef.current(next);
   }, [min, max, step]);
 
-  const onPointerDown = useCallback((e: React.PointerEvent) => {
+  const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    activePointerIdRef.current = e.pointerId;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    e.preventDefault();
     setDragging(true);
     updateValue(e.clientX);
   }, [updateValue]);
+
+  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging || activePointerIdRef.current !== e.pointerId) return;
+    updateValue(e.clientX);
+  }, [dragging, updateValue]);
+
+  const finishDragging = useCallback((e?: React.PointerEvent<HTMLDivElement>) => {
+    if (e && activePointerIdRef.current !== e.pointerId) return;
+
+    if (e?.currentTarget && activePointerIdRef.current !== null && e.currentTarget.hasPointerCapture(activePointerIdRef.current)) {
+      e.currentTarget.releasePointerCapture(activePointerIdRef.current);
+    }
+
+    activePointerIdRef.current = null;
+    setDragging(false);
+  }, []);
 
   useEffect(() => {
     if (!dragging) return;
 
     const onMove = (e: PointerEvent) => {
+      if (activePointerIdRef.current !== e.pointerId) return;
       updateValue(e.clientX);
     };
 
-    const onUp = () => {
+    const onUp = (e: PointerEvent) => {
+      if (activePointerIdRef.current !== e.pointerId) return;
+      activePointerIdRef.current = null;
+      setDragging(false);
+    };
+
+    const onCancel = (e: PointerEvent) => {
+      if (activePointerIdRef.current !== e.pointerId) return;
+      activePointerIdRef.current = null;
       setDragging(false);
     };
 
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onCancel);
 
     return () => {
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onCancel);
     };
   }, [dragging, updateValue]);
 
@@ -78,6 +109,9 @@ export const Slider = memo(function Slider({
       ref={ref}
       className="rennu-slider"
       onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={finishDragging}
+      onPointerCancel={finishDragging}
       style={
         {
           ['--percent' as string]: `${percent}%`,
