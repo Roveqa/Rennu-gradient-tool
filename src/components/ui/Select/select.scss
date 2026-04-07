@@ -105,16 +105,12 @@
   max-height: 128px;
   overflow-y: auto;
 
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .rennu-select__menu::-webkit-scrollbar {
-  width: 6px;
-}
-
-.rennu-select__menu::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
+  display: none;
 }
 
 /* ================== ITEM ================== */
