@@ -29,8 +29,51 @@
   margin-bottom: 12px;
 }
 
+.sidebar__sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
 .sidebar__sectionLabelTight {
   margin-bottom: 12px;
+}
+
+.sidebar__sectionHeader .sidebar__sectionLabelTight {
+  margin-bottom: 0;
+}
+
+.sidebar__sectionActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.sidebar__iconButton {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: t.$foreground-muted;
+  border-radius: 6px;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.sidebar__iconButton:hover {
+  background: t.$surface-10;
+  color: t.$foreground-muted;
+}
+
+.sidebar__iconButton:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.18);
+  outline-offset: 2px;
 }
 
 .sidebar__stops {
@@ -127,6 +170,7 @@
   background: transparent;
   cursor: pointer;
   padding: 0;
+  margin-right: 6px;
   color: rgba(255, 255, 255, 0.45);
   font-size: 14px;
   line-height: 1;
@@ -134,16 +178,6 @@
 
 .stop-row__del:hover {
   color: t.$foreground-inverse;
-}
-
-.sidebar__stopControls {
-  display: flex;
-  gap: 4px;
-  margin-top: 12px;
-}
-
-.sidebar__stopBtn {
-  flex: 1;
 }
 
 .sidebar__divider {
@@ -411,7 +445,6 @@
     grid-column: span 2;
   }
 
-  .sidebar__stopControls,
   .sidebar__footerRow {
     gap: 8px;
   }

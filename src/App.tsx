@@ -10,10 +10,12 @@ import {
   ArrowRight,
   ArrowDownRight,
   ArrowUpRight,
+  ArrowUpDown,
   Circle,
   CircleOff,
   CornerDownLeft,
   ArrowUp,
+  Plus,
   X,
 } from 'lucide-react';
 
@@ -620,9 +622,15 @@ export default function App() {
       `#${Math.floor(Math.random() * 0xffffff)
         .toString(16)
         .padStart(6, '0')}`;
-    const p = pos ?? Math.random();
     setStops((prev) => {
-      const next = [...prev, { hex: h, pos: Math.min(1, Math.max(0, p)), name: rndJP().en }];
+      const next = [...prev, { hex: h, pos: pos ?? 1, name: rndJP().en }];
+      if (pos === undefined) {
+        next.forEach((stop, i) => {
+          stop.pos = next.length === 1 ? 0 : i / (next.length - 1);
+        });
+        return next;
+      }
+
       next.sort((a, b) => a.pos - b.pos);
       return next;
     });
@@ -863,7 +871,27 @@ export default function App() {
 
         <div className="sidebar__settings">
           <div className="sidebar__section">
-            <div className="sidebar__sectionLabel">Gradient</div>
+            <div className="sidebar__sectionHeader">
+              <div className="sidebar__sectionLabel sidebar__sectionLabelTight">Gradient</div>
+              <div className="sidebar__sectionActions" aria-label="Gradient actions">
+                <button
+                  type="button"
+                  className="sidebar__iconButton"
+                  aria-label="Add color"
+                  onClick={() => addStop()}
+                >
+                  <Plus size={14} />
+                </button>
+                <button
+                  type="button"
+                  className="sidebar__iconButton"
+                  aria-label="Reverse stops"
+                  onClick={reverseStops}
+                >
+                  <ArrowUpDown size={14} />
+                </button>
+              </div>
+            </div>
             <div className="sidebar__stops" id="stop-list">
             {sortedStops.map(({ s, idx }) => (
               <div
@@ -979,24 +1007,6 @@ export default function App() {
               </div>
             ))}
           </div>
-
-          <div className="sidebar__stopControls">
-            <Button
-              variant="secondary"
-              className="sidebar__stopBtn"
-              onClick={() => addStop()}
-            >
-              Add color
-            </Button>
-            <Button
-              variant="outline"
-              className="sidebar__stopBtn"
-              onClick={reverseStops}
-              aria-label="Reverse stops"
-            >
-              Reverse
-            </Button>
-          </div>
           </div>
 
           <div className="sidebar__dividerWrap">
@@ -1061,6 +1071,16 @@ export default function App() {
                   {d.label}
                 </TabButton>
               ))}
+            </div>
+          </div>
+
+          <div className="sidebar__dividerWrap">
+            <Divider />
+          </div>
+
+          <div className="sidebar__block">
+            <div className="sidebar__sectionLabel sidebar__sectionLabelTight">
+              Actions
             </div>
             <div className="sidebar__footerRow">
               <Button variant="secondary" onClick={randomize}>
