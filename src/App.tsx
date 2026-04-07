@@ -1091,6 +1091,10 @@ export default function App() {
               </Button>
             </div>
           </div>
+
+          <div className="sidebar__dividerWrap">
+            <Divider />
+          </div>
         </div>
 
         <div className="sidebar__footer">
