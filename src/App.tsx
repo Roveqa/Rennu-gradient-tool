@@ -784,6 +784,26 @@ export default function App() {
     };
   }, [draw]);
 
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.code !== 'Space') return;
+
+      const target = e.target as HTMLElement | null;
+      if (
+        target?.closest('input, textarea, select, button, [contenteditable="true"], [role="dialog"]') ||
+        target?.isContentEditable
+      ) {
+        return;
+      }
+
+      e.preventDefault();
+      randomize();
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
   const presetItems = useMemo(() => {
     return Object.keys(PRESETS).map((name) => ({
       value: name,
