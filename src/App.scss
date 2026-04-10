@@ -215,13 +215,13 @@
   margin-bottom: 8px;
 }
 
-/* первые 6 элементов (2 ряда) → по 2 колонки */
-.sidebar__dirGrid > *:nth-child(-n + 6) {
+/* первые 3 элемента → по 2 колонки (3 в ряд) */
+.sidebar__dirGrid > *:nth-child(-n + 3) {
   grid-column: span 2;
 }
 
-/* последние 2 → по 3 колонки */
-.sidebar__dirGrid > *:nth-child(n + 7) {
+/* следующие 4 элемента (2 ряда по 2) → по 3 колонки */
+.sidebar__dirGrid > *:nth-child(n + 4):nth-child(-n + 7) {
   grid-column: span 3;
 }
 
