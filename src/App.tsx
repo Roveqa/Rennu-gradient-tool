@@ -295,10 +295,10 @@ const PRESETS: Record<string, string[]> = {
 const DIRECTIONS: { id: Orient; label: string; icon: React.ReactNode }[] = [
   { id: 'v', label: 'Vert', icon: <ArrowDown size={12} /> },
   { id: 'h', label: 'Horiz', icon: <ArrowRight size={12} /> },
+  { id: 'rev', label: 'Reverse', icon: <ArrowUp size={12} /> },
   { id: 'd1', label: 'Diag', icon: <ArrowDownRight size={12} /> },
   { id: 'd2', label: 'Diag', icon: <ArrowUpRight size={12} /> },
-  { id: 'tl', label: 'Corner', icon: <CornerDownLeft size={12} /> },
-  { id: 'rev', label: 'Reverse', icon: <ArrowUp size={12} /> },
+  // { id: 'tl', label: 'Corner', icon: <CornerDownLeft size={12} /> },
   { id: 'r', label: 'Radial', icon: <Circle size={12} /> },
   { id: 'rc', label: 'Off-ctr', icon: <CircleOff size={12} /> },
 ];
