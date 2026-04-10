@@ -435,15 +435,25 @@
     padding: 0 20px;
   }
 
-  .sidebar__dirGrid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
-  }
+//   .sidebar__dirGrid {
+//   grid-template-columns: repeat(4, 1fr);
+//   gap: 6px;
+// }
 
-  .sidebar__dirGrid > *:nth-child(-n + 6),
-  .sidebar__dirGrid > *:nth-child(n + 7) {
-    grid-column: span 2;
-  }
+// /* 1-й ряд: 3 элемента */
+// .sidebar__dirGrid > *:nth-child(1) {
+//   grid-column: span 2;
+// }
+
+// .sidebar__dirGrid > *:nth-child(2),
+// .sidebar__dirGrid > *:nth-child(3) {
+//   grid-column: span 1;
+// }
+
+// /* 2-й и 3-й ряды: по 2 элемента */
+// .sidebar__dirGrid > *:nth-child(n + 4):nth-child(-n + 7) {
+//   grid-column: span 2;
+// }
 
   .sidebar__footerRow {
     gap: 8px;
