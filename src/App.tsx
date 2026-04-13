@@ -13,7 +13,6 @@ import {
   ArrowUpDown,
   Circle,
   CircleOff,
-  // CornerDownLeft,
   ArrowUp,
   Plus,
   X,
@@ -22,7 +21,7 @@ import {
 import './App.scss';
 
 type Stop = { hex: string; pos: number; name: string };
-type Orient = 'v' | 'h' | 'd1' | 'd2' | 'r' | 'rc' | 'tl' | 'rev';
+type Orient = 'v' | 'h' | 'd1' | 'd2' | 'r' | 'rc' | 'rev';
 
 const JP = [
   { jp: '濡羽色', en: 'NUREBAIRO', mean: "SHINY CROW'S FEATHER" },
@@ -298,7 +297,6 @@ const DIRECTIONS: { id: Orient; label: string; icon: React.ReactNode }[] = [
   { id: 'rev', label: 'Reverse', icon: <ArrowUp size={12} /> },
   { id: 'd1', label: 'Diag', icon: <ArrowDownRight size={12} /> },
   { id: 'd2', label: 'Diag', icon: <ArrowUpRight size={12} /> },
-  // { id: 'tl', label: 'Corner', icon: <CornerDownLeft size={12} /> },
   { id: 'r', label: 'Radial', icon: <Circle size={12} /> },
   { id: 'rc', label: 'Off-ctr', icon: <CircleOff size={12} /> },
 ];
@@ -378,7 +376,6 @@ function makeGradient(
   else if (orient === 'h') grd = ctx.createLinearGradient(0, 0, W, 0);
   else if (orient === 'd1') grd = ctx.createLinearGradient(0, 0, W, H);
   else if (orient === 'd2') grd = ctx.createLinearGradient(W, 0, 0, H);
-  else if (orient === 'tl') grd = ctx.createLinearGradient(W, H, 0, 0);
   else if (orient === 'rev') grd = ctx.createLinearGradient(0, H, 0, 0);
   else if (orient === 'r') {
     const cx = W / 2,
